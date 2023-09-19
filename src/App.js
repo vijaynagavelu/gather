@@ -150,7 +150,8 @@ export default function App() {
 
 
   return (
-    <main className="flex flex-col  justify-between p-4  bg-gray-200">
+    <main className="flex flex-col  justify-between px-[4%] py-4  bg-gray-200">
+
 
       <style>{googleFontsStyle}</style>
 
@@ -282,11 +283,9 @@ export default function App() {
         )}
       </div>
 
-
       <ToastContainer
         position="bottom-center"
         theme="colored" />
-
 
       <footer className="text-left text-lg bg-white p-4  rounded-[20px]">
         <img className="main-app-footer__logo pb-8" alt="Footer Logo" src="https://www.gatherdao.com/static/media/gd-new-logo-light.44e866ff69c1ad3d75879f9741b657ee.svg"></img>
