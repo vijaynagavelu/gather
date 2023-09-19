@@ -8,6 +8,8 @@ import "prismjs/components/prism-javascript";
 import "prismjs/themes/prism.css";
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const googleFontsStyle = `
   @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
@@ -25,7 +27,6 @@ export default function App() {
   const [userChoice, setUserChoice] = useState(null);
   const [proceedClicked, setProceedClicked] = useState(false);
   const [invalidAmountLines, setInvalidAmountLines] = useState([]);
-  const [successMessage, setSuccessMessage] = useState(null);
 
   const findDuplicates = (code) => {
     const lines = code.split("\n");
@@ -48,34 +49,33 @@ export default function App() {
         }
       } else {
         setInvalidAmountLines((prevLines) => [...prevLines, i + 1]);
-        setSuccessMessage('null');
+        return { duplicates, invalid: [...invalidAmountLines, i + 1] };
       }
     }
-    return duplicates;
+    return { duplicates, invalid: [] };
   };
 
   const handleCodeChange = (newCode) => {
+    setProceedClicked(false);
+
     setCodeValue(newCode);
     setUserChoice(null);
     setDuplicateLines([]);
     setInvalidAmountLines([]);
-    setSuccessMessage(null); // Reset success message when code changes
   };
 
   const handleProceed = () => {
     setProceedClicked(true);
     setInvalidAmountLines([]);
-    const duplicates = findDuplicates(codeValue);
-    console.log(invalidAmountLines, invalidAmountLines.length > 0);
+    const { duplicates, invalid } = findDuplicates(codeValue);
     // Check if there are any duplicate lines or invalid amount lines
     const hasErrors =
-      Object.keys(duplicates).length > 0 || invalidAmountLines.length > 0;
-    setSuccessMessage("");
+      Object.keys(duplicates).length > 0 || invalid.length > 0;
 
     if (hasErrors) {
       setDuplicateLines(duplicates);
     } else {
-      setSuccessMessage("");
+      notify();
     }
   };
 
@@ -85,7 +85,6 @@ export default function App() {
     setCodeValue(updatedCode);
     setDuplicateLines([]);
     console.log(userChoice);
-    //setSuccessMessage("Duplicates combined successfully.");
   };
 
   const handleKeepFirst = () => {
@@ -93,7 +92,6 @@ export default function App() {
     const updatedCode = keepFirst(codeValue);
     setCodeValue(updatedCode);
     setDuplicateLines([]);
-    //setSuccessMessage("Duplicates removed successfully.");
   };
 
   const combineAmounts = (code) => {
@@ -144,6 +142,13 @@ export default function App() {
       .split("\n")
       .map((line, i) => `<span class='editorLineNumber'>${i + 1}</span>${line}`)
       .join("\n");
+
+
+
+  function notify() {
+    toast.success("Success!");
+  }
+
 
   return (
     <main className="flex flex-col  justify-between p-4  bg-gray-200">
@@ -236,7 +241,7 @@ export default function App() {
           </Popup>
         </div>
 
-        <button className="bg-gradient-to-br from-purple-400 via-purple-600 to-purple-800 p-4 mb-6 rounded-full text-white" onClick={handleProceed}>Next</button>
+        <button className="bg-gradient-to-br from-purple-400 via-purple-600 to-purple-800 p-4 mb-6 rounded-full text-white" onClick={() => { handleProceed() }}>Next</button>
 
         {proceedClicked && Object.keys(duplicateLines).length > 0 && (
           <div className="text-sm">
@@ -257,11 +262,10 @@ export default function App() {
                   Addresses {name} encountered duplicate in line : {duplicateLines[name].join(", ")}
                 </p>
               </div>
-
             ))}
-
           </div>
         )}
+
         {invalidAmountLines.length > 0 && (
           <div className="text-sm" >
             {invalidAmountLines.map((lineNumber) => (
@@ -274,8 +278,16 @@ export default function App() {
             ))}
           </div>
         )}
-        {successMessage && <p style={{ color: "green" }}>here</p>}
+
+        {/* {proceedClicked && !(invalidAmountLines.length > 0) && <p>k</p>
+        }*/}
       </div>
+
+      <ToastContainer
+        position="bottom-center"
+        theme="colored" />
+
+
 
 
       <footer className="text-left text-lg bg-white p-4  rounded-[20px]">
