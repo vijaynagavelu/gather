@@ -48,6 +48,7 @@ export default function App() {
         }
       } else {
         setInvalidAmountLines((prevLines) => [...prevLines, i + 1]);
+        setSuccessMessage('null');
       }
     }
     return duplicates;
@@ -73,9 +74,8 @@ export default function App() {
 
     if (hasErrors) {
       setDuplicateLines(duplicates);
-      setSuccessMessage("");
     } else {
-      setSuccessMessage("<--- Success --->");
+      setSuccessMessage("");
     }
   };
 
@@ -146,7 +146,7 @@ export default function App() {
       .join("\n");
 
   return (
-    <main className="flex flex-col h-een justify-between p-4  bg-gray-200">
+    <main className="flex flex-col  justify-between p-4  bg-gray-200">
 
       <style>{googleFontsStyle}</style>
 
@@ -274,7 +274,7 @@ export default function App() {
             ))}
           </div>
         )}
-        {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
+        {successMessage && <p style={{ color: "green" }}>here</p>}
       </div>
 
 
