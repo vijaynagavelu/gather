@@ -152,7 +152,6 @@ export default function App() {
   return (
     <main className="flex flex-col  justify-between px-[4%] py-4  bg-gray-200">
 
-
       <style>{googleFontsStyle}</style>
 
       <div className="flex justify-between py-6">
@@ -289,7 +288,7 @@ export default function App() {
         position="bottom-center"
         theme="colored" />
 
-      <footer className="text-left text-lg bg-white p-4  rounded-[20px]">
+      <footer className="text-left text-lg bg-white p-4 pb-16  rounded-[20px]">
         <img className="main-app-footer__logo pb-8" alt="Footer Logo" src="https://www.gatherdao.com/static/media/gd-new-logo-light.44e866ff69c1ad3d75879f9741b657ee.svg"></img>
         <p className="pb-8">Full Stack Decentralized Fundraising Platform</p>
         <div className="mb-12 rounded-lg w-36 h-[3px] overflow-y-auto bg-gradient-to-r from-blue-400 to-pink-600"></div>
