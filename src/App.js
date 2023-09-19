@@ -15,11 +15,11 @@ const googleFontsStyle = `
   @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 `;
 
-const initialCode = `apple 10
-apple 20
-cheery 10
-banana 10h
-banana10`;
+const initialCode = `0x2CB99F193549681e06C6770dDD5543812B4FaFE8 10
+0x2CB99F193549681e06C6770dDD5543812B4FaFE8 10
+0xF4aDE8368DDd835B70b625CF7E3E1Bc5791D18C1 10k
+0x09ae5A64465c18718a46b3aD946270BD3E5e6aaB,10
+0x8B3392483BA26D65E331dB86D4F430E9B3814E5=20`;
 
 export default function App() {
   const [codeValue, setCodeValue] = useState(initialCode);
@@ -143,6 +143,7 @@ export default function App() {
       .map((line, i) => `<span class='editorLineNumber'>${i + 1}</span>${line}`)
       .join("\n");
 
+
   function notify() {
     toast.success("Success!");
   }
@@ -251,7 +252,7 @@ export default function App() {
             </div>
 
             {Object.keys(duplicateLines).map((name) => (
-              <div className="flex items-center gap-8 border-2 border-red-400 p-2 text-red-500 my-1">
+              <div key={name} className="flex items-center gap-8 border-2 border-red-400 p-2 text-red-500 my-1">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
                 </svg>
@@ -262,6 +263,7 @@ export default function App() {
             ))}
           </div>
         )}
+
 
         {invalidAmountLines.length > 0 && (
           <div className="text-sm" >
