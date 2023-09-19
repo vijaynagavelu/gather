@@ -243,7 +243,6 @@ export default function App() {
 
         </div>
 
-        <button className="bg-gradient-to-br from-purple-400 via-purple-600 to-purple-800 p-4 mb-6 rounded-full text-white" onClick={() => { handleProceed() }}>Next</button>
 
         {proceedClicked && Object.keys(duplicateLines).length > 0 && (
           <div className="text-sm">
@@ -281,6 +280,9 @@ export default function App() {
             ))}
           </div>
         )}
+
+        <button className="bg-gradient-to-br from-purple-400 via-purple-600 to-purple-800 p-4 mb-6 rounded-full text-white" onClick={() => { handleProceed() }}>Next</button>
+
       </div>
 
       <ToastContainer
