@@ -221,22 +221,25 @@ export default function App() {
           />
         </div>
 
-        <div className="pb-4 font-medium">Separated by ',' or ' ' or '='</div>
-        <div className="pb-4 cursor-pointer my-popup">
-          <Popup className="popups"
-            trigger={<button className="button hover:underline"> Show Example</button>}
-            modal
-            nested
-          >
-            {close => (
-              <div className="modal rounded-[10px]  p-4 text-center bg-gray-200">
-                <div className="font-semibold text-2xl ">TEXT</div>
-                <p className="py-4 overflow-auto">0xD50ba32a4098C075dC2Z52f9130C5F04a72b11AF 5.565
-                  0x6C9a2aF2f6C8f808BE6aE89A5B3C80f2414480dc,4.242
-                  0x3c32F97E9398A6cc97VASfaA37b3Aa5E068b9C4c=100</p>
-              </div>
-            )}
-          </Popup>
+        <div className="flex justify-between">
+          <div className="pb-4 font-medium">Separated by ',' or ' ' or '='</div>
+          <div className="pb-4 cursor-pointer my-popup">
+            <Popup className="popups"
+              trigger={<button className="button hover:underline"> Show Example</button>}
+              modal
+              nested
+            >
+              {close => (
+                <div className="modal rounded-[10px]  p-4 text-center bg-gray-200">
+                  <div className="font-semibold text-2xl ">TEXT</div>
+                  <p className="py-4 overflow-auto">0xD50ba32a4098C075dC2Z52f9130C5F04a72b11AF 5.565
+                    0x6C9a2aF2f6C8f808BE6aE89A5B3C80f2414480dc,4.242
+                    0x3c32F97E9398A6cc97VASfaA37b3Aa5E068b9C4c=100</p>
+                </div>
+              )}
+            </Popup>
+          </div>
+
         </div>
 
         <button className="bg-gradient-to-br from-purple-400 via-purple-600 to-purple-800 p-4 mb-6 rounded-full text-white" onClick={() => { handleProceed() }}>Next</button>
