@@ -143,8 +143,6 @@ export default function App() {
       .map((line, i) => `<span class='editorLineNumber'>${i + 1}</span>${line}`)
       .join("\n");
 
-
-
   function notify() {
     toast.success("Success!");
   }
@@ -162,7 +160,6 @@ export default function App() {
           <img alt="Search Icon" src="https://www.gatherdao.com/static/media/menu.2370ef6424304fee65eecb3caddddf0d.svg"></img>
         </div>
       </div>
-
 
       <div className="px-[10%] gap-2 flex flex-col bg-white mb-4 py-8 rounded-[20px]">
 
@@ -278,16 +275,12 @@ export default function App() {
             ))}
           </div>
         )}
-
-        {/* {proceedClicked && !(invalidAmountLines.length > 0) && <p>k</p>
-        }*/}
       </div>
+
 
       <ToastContainer
         position="bottom-center"
         theme="colored" />
-
-
 
 
       <footer className="text-left text-lg bg-white p-4  rounded-[20px]">
