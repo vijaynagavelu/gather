@@ -36,6 +36,7 @@ export default function App() {
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i];
       const [name, amount] = line.split(/[=, ]+/);
+      console.log(name, parseFloat(amount), line.split(/\s+/));
 
       if (amount && !isNaN(amount)) {
         if (seen[name]) {
@@ -100,14 +101,16 @@ export default function App() {
     const updatedLines = [];
 
     for (const line of lines) {
-      const [name, amount] = line.split(/\s+/);
+      const [name, amount] = line.split(/[=, ]+/);
       const existingLine = seen[name];
 
       if (existingLine !== undefined) {
         // A line with this name has been seen before
         // Combine the amounts with the existing line
         const existingAmount = parseFloat(
-          updatedLines[existingLine].split(/\s+/)[1]
+          // updatedLines[existingLine].split(/\s+/)[1]
+          updatedLines[existingLine].split(/[=, ]+/)[1]
+
         );
         const newAmount = existingAmount + parseFloat(amount);
         updatedLines[existingLine] = `${name} ${newAmount}`;
