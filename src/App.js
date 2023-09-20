@@ -16,10 +16,10 @@ const googleFontsStyle = `
 `;
 
 const initialCode = `0x2CB99F193549681e06C6770dDD5543812B4FaFE8 10
-0x2CB99F193549681e06C6770dDD5543812B4FaFE8 10
-0xF4aDE8368DDd835B70b625CF7E3E1Bc5791D18C1 10k
+0x2CB99F193549681e06C6770dDD5543812B4FaFE8,10
+0xF4aDE8368DDd835B70b625CF7E3E1Bc5791D18C1=10
 0x09ae5A64465c18718a46b3aD946270BD3E5e6aaB,10
-0x8B3392483BA26D65E331dB86D4F430E9B3814E5=20`;
+0x8B3392483BA26D65E331dB86D4F430E9B3814E5 20k`;
 
 export default function App() {
   const [codeValue, setCodeValue] = useState(initialCode);
@@ -58,7 +58,6 @@ export default function App() {
 
   const handleCodeChange = (newCode) => {
     setProceedClicked(false);
-
     setCodeValue(newCode);
     setUserChoice(null);
     setDuplicateLines([]);
