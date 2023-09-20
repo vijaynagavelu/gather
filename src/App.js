@@ -32,11 +32,12 @@ export default function App() {
     const lines = code.split("\n");
     const seen = {};
     const duplicates = {};
+    const wrongLines = [];
+
 
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i];
       const [name, amount] = line.split(/[=, ]+/);
-      console.log(name, parseFloat(amount), line.split(/\s+/));
 
       if (amount && !isNaN(amount)) {
         if (seen[name]) {
@@ -50,10 +51,10 @@ export default function App() {
         }
       } else {
         setInvalidAmountLines((prevLines) => [...prevLines, i + 1]);
-        return { duplicates, invalid: [...invalidAmountLines, i + 1] };
+        wrongLines.push(i + 1);
       }
     }
-    return { duplicates, invalid: [] };
+    return { duplicates, wrongLines };
   };
 
   const handleCodeChange = (newCode) => {
@@ -67,10 +68,10 @@ export default function App() {
   const handleProceed = () => {
     setProceedClicked(true);
     setInvalidAmountLines([]);
-    const { duplicates, invalid } = findDuplicates(codeValue);
+    const { duplicates, wrongLines } = findDuplicates(codeValue);
     // Check if there are any duplicate lines or invalid amount lines
     const hasErrors =
-      Object.keys(duplicates).length > 0 || invalid.length > 0;
+      Object.keys(duplicates).length > 0 || wrongLines.length > 0;
 
     if (hasErrors) {
       setDuplicateLines(duplicates);
